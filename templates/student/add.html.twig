@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block headTitle %}
+    Add Student
+{% endblock %}
+
+{% block pageTitle %}
+    Fill the form
+{% endblock %}
+
+{% block navitem %}
+    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ path('Students_List') }}">Students</a></li>
+    <li class="nav-item"><a class="nav-link active" href="{{ path('Add_Student') }}">Add Student</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('Author') }}">Author</a></li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="pe-5 ps-5 pt-5">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col">{{ form_row(form.nom) }}</div>
+            <div class="col">{{ form_row(form.prenom) }}</div>
+        </div>
+        {{ form_rest(form) }}
+    </div>
+
+{% endblock %}
+
+
+

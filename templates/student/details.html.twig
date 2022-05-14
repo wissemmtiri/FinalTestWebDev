@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block headTitle %}
+    {{ student.nom~" "~student.prenom }}
+{% endblock %}
+
+{% block pageTitle %}
+    Student Details
+{% endblock %}
+
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ student.nom }} {{ student.prenom }}</h5>
+            <p class="card-text"><br><b>Section :
+                {% if student.section is not null%} {{ student.section.designation }} {% else %} No section yet {% endif %}
+                </b><br><br>LoremLorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nullam luctus, diam at tincidunt iaculis,
+                odio magna pharetra orci, a porta neque nisi non augue. Donec laoreet augue vitae lacus consectetur, eu faucibus augue rhoncus.</p>
+            <a href="https://github.com/wissemmtiri" class="btn btn-primary">Hire Student</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/css.css') }}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('js/js.js') }}"></script>
+{% endblock %}
+
+{% block headTitle %}
+    Students
+{% endblock %}
+
+{% block pageTitle %}
+    Students
+{% endblock %}
+
+{% block content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table">
+            <tr class="bg-dark" style="color: white;">
+                <td>ID</td>
+                <td>Nom</td>
+                <td>Prenom</td>
+                <td>Section</td>
+                <td>Actions</td>
+            </tr>
+            {% for student in students %}
+                {% if loop.index % 2 != 0 %}
+                    <tr class="bg-light">
+                {% else %}
+                    <tr>
+                {% endif %}
+                        <td>
+                            {{ student.id }}
+                        </td>
+                        <td>
+                            {{ student.nom }}
+                        </td>
+                        <td>
+                            {{ student.prenom }}
+                        </td>
+                        <td>
+                            {% if student.section is not null %}
+                                {{ student.section.designation }}
+                            {% else %}
+                                Section non spécifiée
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('Student_Details', {id:student.id}) }}" class="btn btn-secondary">Details</a>
+                            <a href="{{ path('Edit_Student', {id:student.id}) }}" class="btn btn-secondary">Edit</a>
+                            <a href="{{ path('Delete_Student', {id:student.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                </tr>
+            {% endfor %}
+    </table>
+{% endblock %}
